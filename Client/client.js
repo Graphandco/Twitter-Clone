@@ -24,5 +24,9 @@ form.addEventListener('submit', (event) => {
         headers: {
             'content-type': 'application/json',
         },
-    });
+    })
+        .then((response) => response.json())
+        .then((createdMew) => {
+            console.log(createdMew);
+        });
 });

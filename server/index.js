@@ -1,7 +1,11 @@
 const express = require('express');
 const cors = require('cors');
+const monk = require('monk');
 
 const app = express();
+
+const db = monk('localhost/twitter-clone');
+const mews = db.get('mews');
 
 app.use(cors());
 app.use(express.json());
@@ -24,12 +28,14 @@ function isValidMew(mew) {
 app.post('/mews', (req, res) => {
     console.log(req.body);
     if (isValidMew(req.body)) {
-        //insert db
         const mew = {
             name: req.body.name.toString(),
             content: req.body.content.toString(),
+            created: new Date(),
         };
-        console.log(mew);
+        mews.insert(mew).then((createdMEw) => {
+            res.json(createdMEw);
+        });
     } else {
         res.json({
             message: 'Hey, nom et message sont requis !',
