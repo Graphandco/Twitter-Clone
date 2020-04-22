@@ -31,7 +31,6 @@ app.post('/mews', (req, res) => {
         };
         console.log(mew);
     } else {
-        res.status(422);
         res.json({
             message: 'Hey, nom et message sont requis !',
         });
