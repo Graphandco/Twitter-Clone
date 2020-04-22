@@ -3,3 +3,8 @@ h1 {
     text-align: center;
     padding: 1rem;
 }
+
+form {
+    width: 600px;
+    margin: auto;
+}
