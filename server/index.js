@@ -16,6 +16,12 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/mews', (req, res) => {
+    mews.find().then((mews) => {
+        res.json(mews);
+    });
+});
+
 function isValidMew(mew) {
     return (
         mew.name &&
